@@ -1,12 +1,17 @@
 import axios from 'axios'
+const url = 'https://api.openweathermap.org/data/2.5/forecast?q='
 
-export default async function getWeatherLocation(location) {
+export const fetchWeatherLocation = async (location) => {
+    let changeUrl = url
+
+    if (location) {
+        changeUrl = `${url}${location}&appid=${process.env.REACT_APP_OPENWEATHER_API_KEY}`
+    }
+
     try {
-        const result = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${location}&appid=${process.env.REACT_APP_OPENWEATHER_API_KEY}`)
+        const { data: { list, city } } = await axios.get(changeUrl);
 
-        if (result.status === 200) return { success: true, data: await result.json() }
-
-        else return { success: false, error: result.statusText }
+        return { list, city };
 
     } catch (err) {
 
@@ -14,4 +19,12 @@ export default async function getWeatherLocation(location) {
 
     }
 
+}
+
+export const fetchFiveDayForecast = async () => {
+    try {
+        const { data } = await axios.get(`${url}/`)
+    } catch (err) {
+
+    }
 }
