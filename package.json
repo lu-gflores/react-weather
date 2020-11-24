@@ -7,10 +7,12 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.20.0",
+    "framer-motion": "^2.9.4",
     "nodemon": "^2.0.6",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
-    "react-scripts": "3.4.4"
+    "react-scripts": "3.4.4",
+    "styled-components": "^5.2.1"
   },
   "scripts": {
     "start": "react-scripts start",

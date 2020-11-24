@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from  'axios'
 import Navbar from './components/layout/Navbar'
-import Jumbotron from './components/layout/Jumbotron'
-import Container from './components/layout/Container'
-
-import './App.css';
 
 function App() {
+
+  const [weather, setWeather] = useState({})
 
  useEffect(()=> {
    axios.get(`http://api.openweathermap.org/data/2.5/forecast?q=london&appid=${process.env.REACT_APP_OPENWEATHER_API_KEY}`)
@@ -14,11 +12,11 @@ function App() {
       console.log(data)
  }).catch(err => console.log(err)) 
  }, [])
+
     return (
       <div className="App">
         <Navbar />
-        <Jumbotron />
-
+        <h1>Weather App</h1>
 
       </div>
     );
