@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from  'axios'
 import Navbar from './components/layout/Navbar'
+import GlobalStyles from './components/GlobalStyle'
 
 function App() {
 
@@ -15,9 +16,8 @@ function App() {
 
     return (
       <div className="App">
+      <GlobalStyles />
         <Navbar />
-        <h1>Weather App</h1>
-
       </div>
     );
 
