@@ -16,9 +16,11 @@ const GlobalStyles = createGlobalStyle`
         &::-webkit-scrollbar-track {
         background: white;
     }
+    
     }
     body{
         font-family: 'Roboto Slab', serif;
+        background-color: '#fcfcfca';
     }
 `
 export default GlobalStyles

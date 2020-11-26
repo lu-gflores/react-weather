@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from  'axios'
 import Navbar from './components/layout/Navbar'
 import GlobalStyles from './components/GlobalStyle'
-
+import Weather from './components/Weather'
 function App() {
 
   const [weather, setWeather] = useState({})
@@ -15,9 +15,10 @@ function App() {
  }, [])
 
     return (
-      <div className="App">
+      <div className="App container">
       <GlobalStyles />
         <Navbar />
+        <Weather />
       </div>
     );
 
