@@ -12,20 +12,24 @@ const Weather = () => {
          console.log(data.data)
   }).catch(err => console.log(err)) 
   }, [])
- 
+ //list[0].weather[0].icon
+ // list[0].weather[0].description
     return (
         <>
         {weather && (
         <div>
             <h1>{weather.city.name}</h1>
+            
+            {weather.list.map(climate => (
             <div className="card" style={{width: '18rem'}}>
-                <img src={weather.list[2].weather.icon} className="card-img-top" alt="..."/>
-             <div className="card-body">
-                <h5 className="card-title">Card title</h5>
-            <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <img key={climate.weather[0].id} src={climate.weather[0].icon} className="card-img-top" alt="..."/>
+           <div className="card-body">
+                
+            <p className="card-text">{climate.weather.description}</p>
             <a href="#" className="btn btn-primary">Go somewhere</a>
             </div>
         </div>
+            ))}     
         </div>
         )}
         </>
