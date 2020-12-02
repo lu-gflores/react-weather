@@ -4,17 +4,35 @@ import axios from 'axios'
 const Weather = () => {
 
   const [weather, setWeather] = useState(null)
+  const [input, setInput] = useState('')
 
   useEffect(()=> {
     axios.get(`http://api.weatherapi.com/v1/forecast.json?key=${process.env.REACT_APP_OPENWEATHER_API_KEY}&q=London`)
     .then(data => {
         setWeather(data.data)
-        console.log(data.data)
   }).catch(err => console.log(err)) 
   }, [])
- 
+
+  const weatherInput = e => {
+      setInput(e.target.value)
+  }
+
+  const searchWeather = () => {
+      axios.get(`http://api.weatherapi.com/v1/forecast.json?key=${process.env.REACT_APP_OPENWEATHER_API_KEY}&q=${input}`)
+      .then(data => {
+          setWeather(data.data)
+      })
+  }
+
     return (
     <>
+    
+    <form className='searchCity'>
+            <div className="input-group mb-3">
+                <input onChange={weatherInput} type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
+                <button onClick={searchWeather} type='button' className='btn btn-primary'>Search</button>
+            </div>
+    </form>
         {weather && (
             <div>
 
