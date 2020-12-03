@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
-
+import styled from 'styled-components'
+import { motion } from 'framer-motion'
 const Weather = () => {
 
   const [weather, setWeather] = useState(null)
@@ -23,7 +24,6 @@ const Weather = () => {
           setWeather(data.data)
       })
   }
-
     return (
     <>
     
@@ -34,15 +34,15 @@ const Weather = () => {
             </div>
     </form>
         {weather && (
-            <div>
+            <CurrentWeather>
 
                 <h1>{weather.location.name}</h1>
                 <h2>{weather.location.region}</h2>
                 <h3>{weather.location.country}</h3>
             {/* Rendering Current weather*/}  
 
-            <div className="card" style={{width: '18rem'}}>
-                <img src={weather.current.condition.icon} className="card-img-top" alt="..."/>
+            <CurrentCard className="card" style={{width: '18rem'}}>
+                <img src={weather.current.condition.icon} className="card-img-top" alt={weather.current.condition.text}/>
                 <div className="card-body">
                     <h5 className="card-title">{weather.current.condition.text}</h5>
                     <p className="card-text">Temperature: {weather.current.temp_c} Celseius</p> 
@@ -50,12 +50,39 @@ const Weather = () => {
                     <p className="card-text">Wind Speed: {weather.current.wind_mph}mph</p> 
                     <p className="card-text">Humidity: {weather.current.humidity}</p> 
                 </div>
-        </div>
-            </div>
+            </CurrentCard>
+        
+            {/*Rendering Forecast */}
+            <ForecastCard className="card" style={{width: '5rem'}}>
+                {weather.forecast.forecastday.map(data =>
+                  <img key={data.date_epoch} src={data.hour[0].condition.icon} className="card-img-top" alt={data.hour[0].condition.text} />
+                    
+                )}
+            </ForecastCard>
+
+            </CurrentWeather>
         )}
              
     </>   
      )
 }
+
+const CurrentWeather = styled(motion.div)`
+    padding: 1rem 1.5rem;
+    h1, h2, h3 {
+        text-align: center;
+    }
+`
+const CurrentCard = styled(motion.div)`
+    margin: 0 auto;
+    float: none;
+    margin-bottom: 10px;
+`
+
+const ForecastCard = styled(motion.div)`
+    display: flex;
+    align-items: center;
+
+`
 
 export default Weather
