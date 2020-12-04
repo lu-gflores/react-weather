@@ -20,7 +20,7 @@ const GlobalStyles = createGlobalStyle`
     }
     body{
         font-family: 'Roboto Slab', serif;
-        background-color: '#fcfcfca';
+        background-color: '#ebe5e5a';
     }
 `
 export default GlobalStyles

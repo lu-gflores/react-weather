@@ -23,7 +23,6 @@ const StyledLogo = styled(motion.div)`
     display: flex;
     justify-content: center;
     padding: 2.5rem;
-    cursor: pointer;
     img{
         height: 3rem;
         width: 3rem;

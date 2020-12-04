@@ -25,11 +25,11 @@ const Weather = () => {
       })
   }
 
-
     return (
     <>
     
     <form className='searchCity'>
+            <h3>Enter a city:</h3>
             <div className="input-group mb-3">
                 <input onChange={weatherInput} type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
                 <button onClick={searchWeather} type='button' className='btn btn-primary'>Search</button>
@@ -55,8 +55,10 @@ const Weather = () => {
             </CurrentCard>
           
             {/*Rendering Forecast */}
-                {weather.forecast.forecastday[0].hour.slice(0, 4).map((data) =>
-            <ForecastCard key={data.time_epoch} className="card" style={{width: '5rem'}}>
+            <h2>Hourly Forecast</h2>
+            <StyledRow>
+            {weather.forecast.forecastday[0].hour.slice(0, 4).map((data) =>
+            <ForecastCard key={data.time_epoch} className="card" style={{width: '10rem'}}>
                   <img  src={data.condition.icon} className="card-img-top" alt={data.condition.text} />
                     <div className="card-body">
                         <h5 className='card-title'>{data.time}</h5>
@@ -65,6 +67,8 @@ const Weather = () => {
             </ForecastCard>
                 )}
 
+            </StyledRow>
+                
             </CurrentWeather>
         )}
              
@@ -87,7 +91,17 @@ const CurrentCard = styled(motion.div)`
 const ForecastCard = styled(motion.div)`
     display: flex;
     align-items: center;
-
+    margin: 0 auto;
+    float: none;
+    @media (max-width: 1300px) {
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+`
+const StyledRow = styled(motion.div)`
+    display: flex;
+    flex-direction: row;
+    padding-top: 1rem;
 `
 
 export default Weather
