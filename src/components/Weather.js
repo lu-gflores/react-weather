@@ -24,6 +24,8 @@ const Weather = () => {
           setWeather(data.data)
       })
   }
+
+
     return (
     <>
     
@@ -51,14 +53,17 @@ const Weather = () => {
                     <p className="card-text">Humidity: {weather.current.humidity}</p> 
                 </div>
             </CurrentCard>
-        
+          
             {/*Rendering Forecast */}
-            <ForecastCard className="card" style={{width: '5rem'}}>
-                {weather.forecast.forecastday.map(data =>
-                  <img key={data.date_epoch} src={data.hour[0].condition.icon} className="card-img-top" alt={data.hour[0].condition.text} />
-                    
-                )}
+                {weather.forecast.forecastday[0].hour.slice(0, 4).map((data) =>
+            <ForecastCard key={data.time_epoch} className="card" style={{width: '5rem'}}>
+                  <img  src={data.condition.icon} className="card-img-top" alt={data.condition.text} />
+                    <div className="card-body">
+                        <h5 className='card-title'>{data.time}</h5>
+                        <p className='card-text'>{data.condition.text}</p>
+                    </div>
             </ForecastCard>
+                )}
 
             </CurrentWeather>
         )}
